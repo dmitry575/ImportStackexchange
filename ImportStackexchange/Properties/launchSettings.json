@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ImportStackexchange": {
+      "commandName": "Project",
+      "commandLineArgs": "-p ./xmls "
+    }
+  }
+}
