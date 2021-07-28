@@ -2,3 +2,6 @@ ImportStackexchange/bin/
 ImportStackexchange/obj/
 Tests/bin/
 Tests/obj/
+.idea/
+.vs/
+ImportStackexchange.sln.DotSettings.user

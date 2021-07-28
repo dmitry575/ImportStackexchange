@@ -15,6 +15,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using Npgsql;
 
 [assembly: XmlConfigurator(Watch = true, ConfigFile = "log4net.config")]
 
@@ -26,13 +27,13 @@ namespace ImportStackexchange
         /// Configuration data from appsettings.json
         /// </summary>
         public static IConfiguration Configuration { get; set; }
+
         private static readonly ILog Logger = LogManager.GetLogger(typeof(Program));
         private static ServiceProvider ServiceProvider;
 
         static async Task Main(string[] args)
         {
-
-            Console.WriteLine($"Starting import data from xmls to database StackExchange");
+            Console.WriteLine($"Starting import data from XMLs to database StackExchange");
             Console.WriteLine($"Version: {Assembly.GetExecutingAssembly().GetName().Version}");
             Console.WriteLine("");
 
@@ -67,14 +68,14 @@ namespace ImportStackexchange
                 return;
             }
 
-            
+
             AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
             Console.CancelKeyPress += CancelHandler;
 
             Logger.InfoFormat("Initialisation finished");
             var textHelp = HelpText.AutoBuild(Parser.Default.ParseArguments<ConfigOptions>(args), _ => _, _ => _);
 
-            if (args[0].Equals("help", StringComparison.InvariantCultureIgnoreCase))
+            if (args.Length > 0 && args[0].Equals("help", StringComparison.InvariantCultureIgnoreCase))
             {
                 Console.WriteLine(textHelp.ToString());
                 return;
@@ -96,29 +97,35 @@ namespace ImportStackexchange
             Logger.InfoFormat(textHelp.ToString());
 
             // add parametrs
-            serviceCollection.AddSingleton<ConfigOptions>(opt => options);
+            serviceCollection.AddSingleton(opt => options);
 
             ServiceProvider = serviceCollection.BuildServiceProvider();
 
             // first step checking tables
             if (options.CheckExists)
             {
-                var checkTablesWorker = ServiceProvider.GetService<CheckingTables>();
+                try
+                {
+                    var checkTablesWorker = ServiceProvider.GetService<CheckingTables>();
 
-                await checkTablesWorker.CheckorCreate();
+                    if (checkTablesWorker != null) await checkTablesWorker.CheckerCreate();
+
+                }
+                catch (NpgsqlException e)
+                {
+                    Logger.Error($"error working with database: {e.Message}");
+                }
             }
 
             var parsing = ServiceProvider.GetService<ImportXmlFiles>();
-            await parsing.WorkAsync();
+            if (parsing != null) await parsing.WorkAsync();
 
             Console.WriteLine("Work finished...");
-            return;
         }
 
         /// <summary>
         /// Event of exit application
         /// </summary>
-
         private static void ProcessExit(object sender, EventArgs e)
         {
             Logger.InfoFormat("Application exit");
