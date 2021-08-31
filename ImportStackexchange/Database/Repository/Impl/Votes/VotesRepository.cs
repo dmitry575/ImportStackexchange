@@ -1,4 +1,4 @@
-﻿using ImportStackexchange.Database.Models;
+﻿using ReaderStackExchangeXml.Models;
 using System.Data;
 
 namespace ImportStackexchange.Database.Repository.Impl.Votes

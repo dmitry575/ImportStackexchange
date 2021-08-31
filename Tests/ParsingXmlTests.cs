@@ -1,11 +1,11 @@
-using ImportStackexchange.Database.Models;
-using ImportStackexchange.Extentions;
+using ReaderStackExchangeXml.Models;
 using ImportStackexchange.Import;
 using ImportStackexchange.Import.Impl;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Xml;
+using Tests.Extentions;
 
 namespace Tests
 {

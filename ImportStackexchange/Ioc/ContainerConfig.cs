@@ -1,7 +1,6 @@
 ﻿using ImportStackexchange.Database;
-using ImportStackexchange.Database.Models;
+using ReaderStackExchangeXml.Models;
 using ImportStackexchange.Database.Repository;
-using ImportStackexchange.Database.Repository.Impl;
 using ImportStackexchange.Database.Repository.Impl.Badges;
 using ImportStackexchange.Database.Repository.Impl.Comments;
 using ImportStackexchange.Database.Repository.Impl.PostHistory;
@@ -117,6 +116,7 @@ namespace ImportStackexchange.Ioc
                 .AddTransient<IImportFile, ImportVotes>();
         }
 
+        
         private static IServiceCollection AddImport<T, TService>(this IServiceCollection services)
            where T : class
            where TService : BaseImport<T>

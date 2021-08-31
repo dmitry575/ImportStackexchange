@@ -16,6 +16,7 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Npgsql;
+using ReaderStackExchangeXml.Ioc;
 
 [assembly: XmlConfigurator(Watch = true, ConfigFile = "log4net.config")]
 
@@ -60,7 +61,9 @@ namespace ImportStackexchange
             var serviceCollection = new ServiceCollection();
             try
             {
-                serviceCollection.ConfigureContainer(Configuration);
+                serviceCollection
+                    .ConfigureContainer(Configuration)
+                    .AddReaderStackXml();
             }
             catch (Exception e)
             {

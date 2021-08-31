@@ -1,8 +1,9 @@
 ﻿using ImportStackexchange.Database.Repository;
 using ImportStackexchange.Enums;
 using ImportStackexchange.Extentions;
-using ImportStackexchange.Import.Impl;
 using log4net;
+using ReaderStackExchangeXml;
+using ReaderStackExchangeXml.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,20 +14,22 @@ namespace ImportStackexchange.Import.Actions
     /// <summary>
     /// Base class of importing data
     /// </summary>
-    public abstract class BaseImport<T> : IImportFile where T : class
+    public abstract class BaseImport<T> : IImportFile where T : BaseXmlModel
     {
 
         private static readonly ILog _logger = LogManager.GetLogger(typeof(ImportTags));
 
         private readonly IInsertRepository<T> _insertRepository;
+        private readonly IReaderStackExchangeXml<T> _reader;
 
         public abstract TypeFile TypeFile { get; }
 
         public int BulkCount => 1000;
 
-        public BaseImport(IInsertRepository<T> t)
+        public BaseImport(IInsertRepository<T> t, IReaderStackExchangeXml<T> reader)
         {
             _insertRepository = t;
+            _reader = reader;
         }
 
         public async Task ImportToDbAsync(string fileName)
@@ -40,13 +43,10 @@ namespace ImportStackexchange.Import.Actions
 
             try
             {
-                var parsingXml = new ParsingXml(fileName);
 
                 var list = new List<T>();
-                await foreach (var reader in parsingXml.ParseAsync())
+                await foreach (var data in _reader.ReadAsync(fileName))
                 {
-                    // DeSerialize
-                    var data = reader.XmlDeserialize<T>();
                     if (list.Count >= BulkCount)
                     {
                         try
