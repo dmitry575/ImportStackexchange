@@ -1,6 +1,7 @@
 ﻿using ReaderStackExchangeXml.Models;
 using ImportStackexchange.Database.Repository;
 using ImportStackexchange.Enums;
+using ReaderStackExchangeXml;
 
 namespace ImportStackexchange.Import.Actions
 {
@@ -11,7 +12,7 @@ namespace ImportStackexchange.Import.Actions
     {
         public override TypeFile TypeFile => TypeFile.Tags;
      
-        public ImportTags(IInsertRepository<Tag> t) : base(t)
+        public ImportTags(IInsertRepository<Tag> repo, IReaderStackExchangeXml<Tag> reader) : base(repo, reader)
         {
         }
     }

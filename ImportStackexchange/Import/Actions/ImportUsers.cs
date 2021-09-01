@@ -1,6 +1,7 @@
 ﻿using ReaderStackExchangeXml.Models;
 using ImportStackexchange.Database.Repository;
 using ImportStackexchange.Enums;
+using ReaderStackExchangeXml;
 
 namespace ImportStackexchange.Import.Actions
 {
@@ -8,7 +9,7 @@ namespace ImportStackexchange.Import.Actions
     {
         public override TypeFile TypeFile => TypeFile.Users;
 
-        public ImportUsers(IInsertRepository<User> t) : base(t)
+        public ImportUsers(IInsertRepository<User> repo, IReaderStackExchangeXml<User> reader) : base(repo, reader)
         {
         }
     }

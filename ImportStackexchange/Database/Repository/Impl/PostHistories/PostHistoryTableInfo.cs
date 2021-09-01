@@ -1,4 +1,4 @@
-﻿namespace ImportStackexchange.Database.Repository.Impl.PostHistory
+﻿namespace ImportStackexchange.Database.Repository.Impl.PostHistories
 {
     public class PostHistoryTableInfo : ICheckTableInfo
     {

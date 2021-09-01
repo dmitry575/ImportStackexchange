@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace ImportStackexchange.Database.Repository.Impl.PostHistorys
+namespace ImportStackexchange.Database.Repository.Impl.PostHistories
 {
     public class PostHistoryCheckRepository : BaseCheckRepository<PostHistoryTableInfo>
     {

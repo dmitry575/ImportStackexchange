@@ -3,7 +3,7 @@ using ReaderStackExchangeXml.Models;
 using ImportStackexchange.Database.Repository;
 using ImportStackexchange.Database.Repository.Impl.Badges;
 using ImportStackexchange.Database.Repository.Impl.Comments;
-using ImportStackexchange.Database.Repository.Impl.PostHistory;
+using ImportStackexchange.Database.Repository.Impl.PostHistories;
 using ImportStackexchange.Database.Repository.Impl.PostLinks;
 using ImportStackexchange.Database.Repository.Impl.Posts;
 using ImportStackexchange.Database.Repository.Impl.Tags;
@@ -61,7 +61,7 @@ namespace ImportStackexchange.Ioc
                     .AddTransient<IInsertRepository<Badge>, BadgesRepository>()
                     .AddTransient<IInsertRepository<Post>, PostsRepository>()
                     .AddTransient<IInsertRepository<PostLink>, PostLinksRepository>()
-                    .AddTransient<IInsertRepository<PostHistory>, PostHistoryRepository>()
+                    .AddTransient<IInsertRepository<Database.Models.PostHistory>, PostHistoryRepository>()
                     .AddTransient<IInsertRepository<Comment>, CommentsRepository>()
                     .AddTransient<IInsertRepository<Vote>, VotesRepository>()
                     ;
@@ -118,7 +118,7 @@ namespace ImportStackexchange.Ioc
 
         
         private static IServiceCollection AddImport<T, TService>(this IServiceCollection services)
-           where T : class
+           where T : BaseXmlModel
            where TService : BaseImport<T>
         {
             return services.AddTransient<BaseImport<T>, TService>();

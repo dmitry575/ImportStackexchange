@@ -1,6 +1,7 @@
 ﻿using ReaderStackExchangeXml.Models;
 using ImportStackexchange.Database.Repository;
 using ImportStackexchange.Enums;
+using ReaderStackExchangeXml;
 
 namespace ImportStackexchange.Import.Actions
 {
@@ -8,7 +9,7 @@ namespace ImportStackexchange.Import.Actions
     {
         public override TypeFile TypeFile => TypeFile.Comments;
 
-        public ImportComments(IInsertRepository<Comment> t) : base(t)
+        public ImportComments(IInsertRepository<Comment> repo, IReaderStackExchangeXml<Comment> reader) : base(repo, reader)
         {
         }
     }

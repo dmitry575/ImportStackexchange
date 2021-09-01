@@ -1,6 +1,7 @@
 ﻿using ReaderStackExchangeXml.Models;
 using ImportStackexchange.Database.Repository;
 using ImportStackexchange.Enums;
+using ReaderStackExchangeXml;
 
 namespace ImportStackexchange.Import.Actions
 {
@@ -8,7 +9,7 @@ namespace ImportStackexchange.Import.Actions
     {
         public override TypeFile TypeFile => TypeFile.Badges;
 
-        public ImportBadges(IInsertRepository<Badge> t) : base(t)
+        public ImportBadges(IInsertRepository<Badge> repo, IReaderStackExchangeXml<Badge> reader) : base(repo, reader)
         {
         }
     }

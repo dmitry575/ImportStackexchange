@@ -1,6 +1,7 @@
 ﻿using ReaderStackExchangeXml.Models;
 using ImportStackexchange.Database.Repository;
 using ImportStackexchange.Enums;
+using ReaderStackExchangeXml;
 
 namespace ImportStackexchange.Import.Actions
 {
@@ -8,7 +9,7 @@ namespace ImportStackexchange.Import.Actions
     {
         public override TypeFile TypeFile => TypeFile.PostHistory;
 
-        public ImportPostHistory(IInsertRepository<PostHistory> t) : base(t)
+        public ImportPostHistory(IInsertRepository<PostHistory> repo, IReaderStackExchangeXml<PostHistory> reader) : base(repo, reader)
         {
         }
     }
