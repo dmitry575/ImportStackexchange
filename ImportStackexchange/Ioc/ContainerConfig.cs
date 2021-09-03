@@ -17,6 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Npgsql;
 using System.Data;
 using System.Threading;
+using ReaderStackExchangeXml.Ioc;
 
 namespace ImportStackexchange.Ioc
 {
@@ -29,7 +30,8 @@ namespace ImportStackexchange.Ioc
                 .AddRepositories()
                 .AddCheckTables()
                 .AddParsers()
-                .AddCancelToken();
+                .AddCancelToken()
+                .AddReaderStackXml();
         }
 
 
@@ -61,7 +63,7 @@ namespace ImportStackexchange.Ioc
                     .AddTransient<IInsertRepository<Badge>, BadgesRepository>()
                     .AddTransient<IInsertRepository<Post>, PostsRepository>()
                     .AddTransient<IInsertRepository<PostLink>, PostLinksRepository>()
-                    .AddTransient<IInsertRepository<Database.Models.PostHistory>, PostHistoryRepository>()
+                    .AddTransient<IInsertRepository<PostHistory>, PostHistoryRepository>()
                     .AddTransient<IInsertRepository<Comment>, CommentsRepository>()
                     .AddTransient<IInsertRepository<Vote>, VotesRepository>()
                     ;
