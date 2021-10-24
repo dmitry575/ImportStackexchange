@@ -16,7 +16,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Scan" Version="1.0.1" />
-    <PackageReference Include="ReaderStackExchangeXml" Version="1.0.2" />
+    <PackageReference Include="ReaderStackExchangeXml" Version="1.0.4" />
   </ItemGroup>
 
   <ItemGroup>

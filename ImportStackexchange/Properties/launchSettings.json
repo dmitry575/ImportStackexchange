@@ -2,7 +2,7 @@
   "profiles": {
     "ImportStackexchange": {
       "commandName": "Project",
-      "commandLineArgs": "-p ./xmls posts tags users comments"
+      "commandLineArgs": "-p ./xmls users"
     }
   }
 }

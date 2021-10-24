@@ -17,7 +17,7 @@ namespace ImportStackexchange.Import.Actions
     public abstract class BaseImport<T> : IImportFile where T : BaseXmlModel
     {
 
-        private static readonly ILog _logger = LogManager.GetLogger(typeof(ImportTags));
+        private static readonly ILog _logger = LogManager.GetLogger(typeof(BaseImport<T>));
 
         private readonly IInsertRepository<T> _insertRepository;
         private readonly IReaderStackExchangeXml<T> _reader;
