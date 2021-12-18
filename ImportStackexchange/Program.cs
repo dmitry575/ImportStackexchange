@@ -112,7 +112,6 @@ namespace ImportStackexchange
                     var checkTablesWorker = ServiceProvider.GetService<CheckingTables>();
 
                     if (checkTablesWorker != null) await checkTablesWorker.CheckerCreate();
-
                 }
                 catch (NpgsqlException e)
                 {

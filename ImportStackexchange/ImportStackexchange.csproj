@@ -8,15 +8,15 @@
 
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.8.0" />
-    <PackageReference Include="Dapper" Version="2.0.90" />
+    <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
-    <PackageReference Include="Dapper.Extensions.PostgreSQL" Version="4.0.0" />
+    <PackageReference Include="Dapper.Extensions.PostgreSQL" Version="4.0.2" />
     <PackageReference Include="DependencyInjection.AssemblyScanner" Version="1.0.0" />
-    <PackageReference Include="log4net" Version="2.0.12" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+    <PackageReference Include="log4net" Version="2.0.13" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Scan" Version="1.0.1" />
-    <PackageReference Include="ReaderStackExchangeXml" Version="1.0.4" />
+    <PackageReference Include="ReaderStackExchangeXml" Version="1.0.5" />
   </ItemGroup>
 
   <ItemGroup>
